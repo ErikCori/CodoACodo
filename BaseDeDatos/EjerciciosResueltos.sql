@@ -39,7 +39,7 @@ LIMIT 20;
 
 /*Ejercicio 10*/
 SELECT country.code, country.name, IFNULL(country.IndepYear, 0) AS IndepYear
-FROm world.country
+FROM world.country
 ORDER BY country.indepyear DESC ; 
 
 /*Ejercicio 11*/
@@ -58,3 +58,70 @@ SELECT *
 FROM world.country
 WHERE country.lifeExpectancy >75
 ORDER BY country.lifeEXpectancy ASC;
+
+/*Ejercicio 14*/
+SELECT *
+FROM world.country
+WHERE country.IndepYear >1850 AND country.GovernmentForm = 'constitutional monarchy';
+
+/*Ejercicio 15*/
+SELECT *
+FROM world.country
+WHERE country.continent = 'Europe' 
+ORDER BY country.GNP DESC
+LIMIT 10;
+
+/*Ejercicio 16 */
+SELECT *
+FROM world.country
+WHERE country.name = country.localName;
+
+/*Ejercicio 17 */
+SELECT *
+FROM world.country
+WHERE country.IndepYear  BETWEEN 1950 AND 1999;
+
+/*Ejercicio 18 */
+SELECT *
+FROM world.country
+WHERE country.Continent IN ('Europe', 'Asia', 'South America');
+
+/*Ejercicio 19 */
+SELECT *
+FROM world.country
+WHERE country.Continent != 'Africa';
+
+/*Ejercicio 20 */
+SELECT *
+FROM world.city
+WHERE city.CountryCode = 'ARG' && city.district !='Buenos Aires';
+
+/*Ejercicio 21 */
+SELECT *
+FROM world.city
+WHERE city.population BETWEEN 125000 AND 130000;
+
+/*Ejercicio 22*/
+SELECT *
+FROM world.country
+WHERE country.IndepYear IS NULL;
+
+/*Ejercicio 23*/
+SELECT *
+FROM world.country
+WHERE country.GNPOld IS NULL AND country.lifeExpectancy IS NULL;
+
+/*Ejercicio 24 */
+SELECT *
+FROM world.country
+WHERE country.name LIKE 'A%';
+
+/*Ejercicio 25 */
+SELECT *
+FROM world.country
+WHERE country.name LIKE '% %';
+
+/*Ejercicio 26 */
+SELECT *
+FROM world.city
+WHERE city.name LIKE '%-%' OR city.district LIKE '%-%';
