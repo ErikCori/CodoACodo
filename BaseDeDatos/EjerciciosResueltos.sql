@@ -125,3 +125,44 @@ WHERE country.name LIKE '% %';
 SELECT *
 FROM world.city
 WHERE city.name LIKE '%-%' OR city.district LIKE '%-%';
+
+/*Ejercicio 26_0*/
+
+SELECT country.name AS Pais, city.name AS Capital 
+FROM world.city , world.country
+WHERE country.capital = city.id;
+
+/*Usando join */
+SELECT country.name AS PAIS, city.name AS CAPITAL
+FROM world.country INNER JOIN world.city
+ON country.capital = city.id;
+
+/*Ejercicio 26_2 */
+SELECT country.name AS 'PAIS', city.name AS 'CAPITAL'
+FROM world.country INNER JOIN world.city
+ON country.capital = city.id
+WHERE country.continent= 'South America';
+
+/*Ejercicio 27 */
+SELECT city.countryCode AS 'CODIGO', city.name AS 'CIUDAD', city.population AS 'POBLACION'
+FROM world.country INNER JOIN world.city
+ON city.countryCode = country.code
+WHERE country.lifeExpectancy > 80;
+
+/*Ejercicio 28 */
+SELECT country.name AS 'PAIS' ,city.name AS 'CAPITAL'
+FROM world.country INNER JOIN world.city
+ON country.capital = city.id
+WHERE country.governmentForm = 'Federal Republic';
+
+/*Ejercicio 29 */
+SELECT countryLanguage.language, country.name
+FROM world.countrylanguage INNER JOIN world.country
+ON countryLanguage.countryCode = country.code
+WHERE (countryLanguage.isOfficial = 'T') AND(country.population BETWEEN 1000000 AND 3000000 );
+
+/*Ejercicio 30 */
+SELECT country.code, country.localName, country.region
+FROM world.countrylanguage INNER JOIN world.country
+ON countrylanguage.countryCode = country.code
+WHERE countrylanguage.language = 'spanish';
