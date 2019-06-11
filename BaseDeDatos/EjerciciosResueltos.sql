@@ -133,8 +133,13 @@ FROM world.city , world.country
 WHERE country.capital = city.id;
 
 /*Usando join */
-SELECT country.name AS PAIS, city.name AS CAPITAL
+SELECT country.name AS 'PAIS', city.name AS 'CAPITAL'
 FROM world.country INNER JOIN world.city
+ON country.capital = city.id;
+
+/*Usando join con left */
+SELECT country.name AS 'PAIS', city.name AS 'CAPITAL'
+FROM world.country LEFT JOIN world.city
 ON country.capital = city.id;
 
 /*Ejercicio 26_2 */
@@ -166,3 +171,43 @@ SELECT country.code, country.localName, country.region
 FROM world.countrylanguage INNER JOIN world.country
 ON countrylanguage.countryCode = country.code
 WHERE countrylanguage.language = 'spanish';
+
+/*Ejercicio 31 */
+SELECT country.name AS 'PAIS', city.name AS 'CAPITAL' 
+FROM world.country INNER JOIN world.city
+ON country.capital = city.id
+WHERE city.population > (country.population / 2);
+
+#Ejercicio 32
+SELECT country.name AS 'PAIS', country.surfaceArea AS 'SUPERFICIE'
+FROM world.country INNER JOIN world.city
+ON country.capital = city.id
+WHERE city.name = city.district 
+AND country.continent = 'Africa';
+
+#Ejercicio 33
+SELECT country.name AS 'PAIS', city.name AS 'CAPITAL', ifnull(country.IndepYear, 0) AS 'AÑO DE INDEPENDENCIA'
+FROM world.country INNER JOIN world.city
+ON country.capital = city.id
+WHERE country.IndepYear != 0
+ORDER BY country.IndepYear ASC
+LIMIT 20;
+
+#Ejercicio 34
+SELECT city.name AS 'nombre', countryLanguage.language
+FROM (world.country INNER JOIN world.city #Relaciona tabla paises con la tabla ciudades
+ON country.code = city.countryCode)INNER JOIN world.countryLanguage#De esta forma: codigo de pais es igua a codigoPais de tabla ciudad 
+#Esa tabla de relacion relacionala con la tabla de lenguaje de paises
+ON country.code = countryLanguage.countryCode#De esta forma : codigo de pais es igual a codigo de paies de la tabla lenguaje de paises
+WHERE countryLanguage.language NOT IN('Spanish', 'English','Portuguese', 'Italian', 'French', 'German')# don el lengaje no sea ninguno de estos
+AND countryLanguage.isOfficial = 'T';# y el leguaje sea oficial
+
+#Ejercicio 35
+SELECT city.name AS 'Ciudad', city.population, country.name AS 'Pais'
+FROM (world.country INNER JOIN world.city
+ON country.code = city.countryCode) INNER JOIN world.countrylanguage
+ON country.code = countryLanguage.countryCode
+WHERE countryLanguage.language = 'English'
+AND country.continent = 'Europe'
+ORDER BY city.population DESC
+LIMIT 10;
