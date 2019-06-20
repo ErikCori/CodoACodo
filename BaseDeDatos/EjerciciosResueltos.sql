@@ -276,3 +276,5 @@ FROM world.country INNER JOIN world.city
 ON country.code = city.countryCode
 WHERE country.Region = 'Caribbean'
 GROUP BY country.name;
+
+ALTER USER 'root'@'localhost' IDENTiFIED WITH mysql_native_password BY 'root';
