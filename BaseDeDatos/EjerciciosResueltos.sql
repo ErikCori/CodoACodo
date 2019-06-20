@@ -253,3 +253,26 @@ SELECT country.governmentForm AS 'Forma de gobierno',
 FROM world.country
 WHERE country.continent = 'Europe'
 GROUP BY country.governmentForm;
+
+#Ejercicio 42
+SELECT country.region AS 'Region',
+	AVG(country.LifeExpectancy) AS 'Promedio de Esperanza de Vida'
+FROM world.country
+GROUP BY country.region
+ORDER BY AVG(country.LifeExpectancy) DESC
+LIMIT 10;
+
+#Ejercicio 43
+SELECT city.District AS 'Distrito', city.countryCode AS 'Codigo de Pais', count(*) AS 'Cantidad de Ciudades'
+FROM world.city
+WHERE city.population > 500000
+GROUP BY city.District, city.countryCode
+ORDER BY COUNT(*) DESC, city.countryCode ASC
+LIMIt 10;
+
+#Ejercicio 44
+SELECT country.name AS 'Pais', COUNT(country.name) AS 'Cantidad de Ciudades'
+FROM world.country INNER JOIN world.city
+ON country.code = city.countryCode
+WHERE country.Region = 'Caribbean'
+GROUP BY country.name;
