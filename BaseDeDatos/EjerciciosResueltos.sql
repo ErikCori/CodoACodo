@@ -277,4 +277,8 @@ ON country.code = city.countryCode
 WHERE country.Region = 'Caribbean'
 GROUP BY country.name;
 
-ALTER USER 'root'@'localhost' IDENTiFIED WITH mysql_native_password BY 'root';
+#ALTER USER 'root'@'localhost' IDENTiFIED WITH mysql_native_password BY 'root';
+
+SELECT country.name AS 'Pais', country.Population AS 'Habitantes'
+FROM world.contry
+ORDER BY country.name ASC;
