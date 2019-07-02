@@ -1,4 +1,3 @@
-
 import java.util.List;
 
 /*
@@ -9,21 +8,24 @@ import java.util.List;
 
 /**
  *
- * @author alumno
+ * @author Fernando
  */
 public interface AlumnoDao {
-    /*La interfaz AlumnoDao(Data Access Object
-    
+    /*  La interfaz AlumnoDao (DATA ACCESS OBJECT u objeto de acceso a datos)
+        nos permite abstraernos de la implementación de la persistencia de
+        datos de la entidad "Alumno", la clase que implemente esta interfaz
+        (por convención "AlumnoDaoImpl") será la que tenga que definir el
+        "como" se implementan los métodos.
     */
-    //Metodos Abstractos a Implementar
-    //Devueve una lista con todos los Alumnos:
-    public List<Alumno> obtenerAlumno();
-    //Devuelve un Alumno:
+    //*** Métodos abstractos a implementar ***  
+    //Devuelve una lista con todos los Alumnos:
+    public List<Alumno> obtenerAlumnos();
+    //Devuelve un Alumno según su id:
     public Alumno obtenerAlumno(int id);
-    //Agregar un alumno:
+    //Agrega un Alumno:
     public boolean agregarAlumno(Alumno alumno);
     //Modifica un Alumno:
     public boolean actualizarAlumno(Alumno alumno);
-    //Borrar un Alumno segun id:
-    public boolean borrarAlumno(int id);
+    //Borrar un Alumno según id:
+    public boolean borrarAlumno(int id);  
 }
